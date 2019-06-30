@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include<malloc.h>
-
 /*
 	定义结构体类型，声明新类型Employee,Ln 11 --> Ln 19 为数据域
 */

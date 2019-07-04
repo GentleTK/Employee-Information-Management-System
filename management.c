@@ -4,7 +4,7 @@
 #include<malloc.h>
 
 /*
-	å®šä¹‰ç»“æž„ä½“ç±»åž‹ï¼Œå£°æ˜Žæ–°ç±»åž‹Employee,Ln 11 --> Ln 19 ä¸ºæ•°æ®åŸŸ
+	¶¨Òå½á¹¹ÌåÀàÐÍ£¬ÉùÃ÷ÐÂÀàÐÍEmployee,Ln 11 --> Ln 19 ÎªÊý¾ÝÓò
 */
 typedef struct employ_info
 {
@@ -17,27 +17,27 @@ typedef struct employ_info
 	char salary[10];
 	char addr[20];
 	char phone[20];				//Ln 19
-	struct employ_info * next;		//æŒ‡é’ˆåŸŸ
+	struct employ_info * next;		//Ö¸ÕëÓò
 }Employee;
 
-void Menu();					//ç³»ç»Ÿèœå• 
-void Show(Employee * Head);			//æµè§ˆä¿¡æ¯
-void Search(Employee * Head);			//æŸ¥è¯¢ä¿¡æ¯
-void save(Employee * Head);			//ä¿å­˜ä¿¡æ¯
-Employee * Update(Employee * Head);		//ä¿®æ”¹ä¿¡æ¯
-Employee * Delete(Employee * Head);		//åˆ é™¤ä¿¡æ¯
-Employee * add(Employee * Head);		//æ·»åŠ ä¿¡æ¯
-Employee * create();				//ä¿å­˜é“¾è¡¨ä¸ºç£ç›˜æ–‡ä»¶
-Employee * openfile();				//æ–°åˆ›å»ºé“¾è¡¨è¯»å–ç£ç›˜æ–‡ä»¶
+void Menu();					//ÏµÍ³²Ëµ¥ 
+void Show(Employee * Head);			//ä¯ÀÀÐÅÏ¢
+void Search(Employee * Head);			//²éÑ¯ÐÅÏ¢
+void save(Employee * Head);			//±£´æÐÅÏ¢
+Employee * Update(Employee * Head);		//ÐÞ¸ÄÐÅÏ¢
+Employee * Delete(Employee * Head);		//É¾³ýÐÅÏ¢
+Employee * add(Employee * Head);		//Ìí¼ÓÐÅÏ¢
+Employee * create();				//±£´æÁ´±íÎª´ÅÅÌÎÄ¼þ
+Employee * openfile();				//ÐÂ´´½¨Á´±í¶ÁÈ¡´ÅÅÌÎÄ¼þ
 
 int  main()
 {
-	Employee * Head=NULL;			//é“¾è¡¨åˆå§‹åŒ–
+	Employee * Head=NULL;			//Á´±í³õÊ¼»¯
 	int select;
 	do
 	{
 		Menu();
-		printf("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼ˆ1-7ï¼‰ï¼š");
+		printf("ÇëÊäÈëÄúµÄÑ¡Ôñ£¨1-7£©£º");
 		scanf("%d",&select);
 		switch(select)
 		{
@@ -48,91 +48,92 @@ int  main()
 			case 5:system("cls");Search(Head);break;
 			case 6:system("cls");Head = Update(Head);break;
 			case 7:break;
-			default:printf("é”™è¯¯é€‰æ‹©ï¼è¯·é‡é€‰");break;
+			default:printf("´íÎóÑ¡Ôñ£¡ÇëÖØÑ¡");break;
 		}
 	}while(select != 7);
 	return 0;
 }
 /*
-	ç³»ç»Ÿèœå• 
+	ÏµÍ³²Ëµ¥ 
 */ 
 void Menu()
 {
-	printf("\n***************èŒå·¥ä¿¡æ¯ç®¡ç†**************\n");
-	printf("*\t1---åˆ›å»ºèŒå·¥è®°å½•(Create)\t*\n");
-	printf("*\t2---æµè§ˆèŒå·¥ä¿¡æ¯(Show)\t\t*\n");
-	printf("*\t3---æ·»åŠ èŒå·¥ä¿¡æ¯(Add)\t\t*\n");
-	printf("*\t4---åˆ é™¤èŒå·¥ä¿¡æ¯(Delete)\t*\n");
-	printf("*\t5---æŸ¥è¯¢èŒå·¥ä¿¡æ¯(Search)\t*\n");
-	printf("*\t6---ä¿®æ”¹èŒå·¥ä¿¡æ¯(Update)\t*\n");
-	printf("*\t7---é€€å‡º(Exit)\t\t\t*\n");
-	printf("*****************************************\n");
+	printf("\n* * * * * * *  Ö°¹¤ÐÅÏ¢¹ÜÀí * * * * * * *\n");
+	printf("*\t1---´´½¨Ö°¹¤¼ÇÂ¼(Create)\t*\n");
+	printf("*\t2---ä¯ÀÀÖ°¹¤ÐÅÏ¢(Show)\t\t*\n");
+	printf("*\t3---Ìí¼ÓÖ°¹¤ÐÅÏ¢(Add)\t\t*\n");
+	printf("*\t4---É¾³ýÖ°¹¤ÐÅÏ¢(Delete)\t*\n");
+	printf("*\t5---²éÑ¯Ö°¹¤ÐÅÏ¢(Search)\t*\n");
+	printf("*\t6---ÐÞ¸ÄÖ°¹¤ÐÅÏ¢(Update)\t*\n");
+	printf("*\t7---ÍË³ö(Exit)\t\t\t*\n");
+	printf("* * * * * * * * * * * * * * * * * * * * *\n");
 }
 /*
-	åˆ›å»ºé“¾è¡¨ï¼ˆé‡‡ç”¨å°¾æ’æ³•ï¼‰ï¼Œæ­¤å‡½æ•°è¿”å›žä¸€ä¸ªæŒ‡å‘é“¾è¡¨å¤´çš„æŒ‡é’ˆ
+	´´½¨Á´±í£¨²ÉÓÃÎ²²å·¨£©£¬´Ëº¯Êý·µ»ØÒ»¸öÖ¸ÏòÁ´±íÍ·µÄÖ¸Õë
 */
 Employee * create()
 {
 	Employee * p,* Head,* end; 
 	char ch;
-	Head = p = end = (Employee * )malloc(sizeof(Employee));//åˆ›å»ºä¸€ä¸ªç»“ç‚¹
+	Head = p = end = (Employee * )malloc(sizeof(Employee));//´´½¨Ò»¸ö½áµã
 	do
 	{
-		end = p;//endä¸ºæŒ‡å‘è¡¨å°¾çš„æŒ‡é’ˆï¼Œå°†è¡¨å°¾æŒ‡é’ˆæŒ‡å‘æ–°æ’å…¥çš„ç»“ç‚¹
-		printf("è¯·è¾“å…¥èŒå·¥å·: ");
+		end = p;//endÎªÖ¸Ïò±íÎ²µÄÖ¸Õë£¬½«±íÎ²Ö¸ÕëÖ¸ÏòÐÂ²åÈëµÄ½áµã
+		printf("ÇëÊäÈëÖ°¹¤ºÅ: ");
 		scanf("%s",p->num);
-		printf("è¯·è¾“å…¥å§“åï¼š");
+		printf("ÇëÊäÈëÐÕÃû£º");
 		scanf("%s", p->name);
-		printf("è¯·è¾“å…¥æ€§åˆ«ï¼š");
+		printf("ÇëÊäÈëÐÔ±ð£º");
 		scanf("%s", p->sex);
-		printf("è¯·è¾“å…¥å‡ºç”Ÿå¹´æœˆï¼š");
+		printf("ÇëÊäÈë³öÉúÄêÔÂ£º");
 		scanf("%s", p->birth);
-		printf("è¯·è¾“å…¥å­¦åŽ†ï¼š");
+		printf("ÇëÊäÈëÑ§Àú£º");
 		scanf("%s", p->edu);
-		printf("è¯·è¾“å…¥èŒåŠ¡ï¼š");
+		printf("ÇëÊäÈëÖ°Îñ£º");
 		scanf("%s", p->post);
-		printf("è¯·è¾“å…¥å·¥èµ„ï¼š");
+		printf("ÇëÊäÈë¹¤×Ê£º");
 		scanf("%s", p->salary);
-		printf("è¯·è¾“å…¥åœ°å€ï¼š");
+		printf("ÇëÊäÈëµØÖ·£º");
 		scanf("%s", p->addr);
-		printf("è¯·è¾“å…¥ç”µè¯å·ç ï¼š");
+		printf("ÇëÊäÈëµç»°ºÅÂë£º");
 		scanf("%s", p->phone);
 		getchar();
-		printf("æ˜¯å¦ç»§ç»­å½•å…¥ï¼ŸæŒ‰Y/yç»§ç»­ ");
+		printf("ÊÇ·ñ¼ÌÐøÂ¼Èë£¿°´Y/y¼ÌÐø ");
 		scanf("%c", &ch);
 		p = (Employee *)malloc(sizeof(Employee));
-		end->next = p;//å°†æ–°ç”Ÿæˆçš„ç»“ç‚¹æ’åœ¨è¡¨å°¾
+		end->next = p;//½«ÐÂÉú³ÉµÄ½áµã²åÔÚ±íÎ²
 	}while(ch == 'y' || ch == 'Y'); 
-	end->next = NULL;//å°¾ç»“ç‚¹æŒ‡é’ˆç½®ç©º
+	end->next = NULL;//Î²½áµãÖ¸ÕëÖÃ¿Õ
 	save(Head);
-	return Head;//è¿”å›žçš„æ˜¯Headçš„å€¼ï¼Œå³é“¾è¡¨ä¸­ç¬¬ä¸€ä¸ªç»“ç‚¹çš„èµ·å§‹åœ°å€
+	return Head;//·µ»ØµÄÊÇHeadµÄÖµ£¬¼´Á´±íÖÐµÚÒ»¸ö½áµãµÄÆðÊ¼µØÖ·
 }
 /*
-	æµè§ˆä¿¡æ¯(è¾“å‡ºé“¾è¡¨),	æ³¨æ„:è¦æƒ³æµè§ˆå¿…é¡»æ‰“å¼€æ–‡ä»¶,è‹¥æ— æ–‡ä»¶,åˆ™éœ€å½•å…¥ä¿¡æ¯ä¿å­˜ä¸ºæ–‡ä»¶å†æ‰“å¼€æµè§ˆ
+	ä¯ÀÀÐÅÏ¢(Êä³öÁ´±í),	×¢Òâ:ÒªÏëä¯ÀÀ±ØÐë´ò¿ªÎÄ¼þ,ÈôÎÞÎÄ¼þ,ÔòÐèÂ¼ÈëÐÅÏ¢±£´æÎªÎÄ¼þÔÙ´ò¿ªä¯ÀÀ
 */
 void Show(Employee * Head)
 {
-	Employee * p;//å®šä¹‰struct employ_infoç±»åž‹çš„å˜é‡p
+	Employee * p;//¶¨Òåstruct employ_infoÀàÐÍµÄ±äÁ¿p
 	Head = openfile();
-	p = Head;//ä½¿pæŒ‡å‘ç¬¬ä¸€ä¸ªç»“ç‚¹
+	p = Head;//Ê¹pÖ¸ÏòµÚÒ»¸ö½áµã
 	if(p == NULL)
 	{
-		printf("æœªæ‰“å¼€ä»»ä½•æ–‡ä»¶ï¼\n");
+		printf("Î´´ò¿ªÈÎºÎÎÄ¼þ£¡\n");
 		getchar();
 		return;
 	}
-	printf("\nèŒå·¥å·  å§“å  æ€§åˆ«  å‡ºç”Ÿå¹´æœˆ  å­¦åŽ†  èŒåŠ¡   å·¥èµ„	   ä½å€	   ç”µè¯å·ç \n");
+	printf("\nÖ°¹¤ºÅ  ÐÕÃû  ÐÔ±ð  ³öÉúÄêÔÂ  Ñ§Àú  Ö°Îñ   ¹¤×Ê	   ×¡Ö·	   µç»°ºÅÂë\n");
 	printf("-----------------------------------------------------------------------\n");
 	while(p != NULL)
 	{
 		printf("\n");
-		printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
+		printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", 
+			p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
 		p = p->next;
 	}
-	getchar();//æ˜¾ç¤ºç»“æžœï¼Œå¦åˆ™ä¸€é—ªè€Œè¿‡
+	getchar();//ÏÔÊ¾½á¹û£¬·ñÔòÒ»ÉÁ¶ø¹ý
 }
 /*
-	æ·»åŠ èŒå·¥ä¿¡æ¯(æ·»åŠ å‰éœ€æ‰“å¼€æ–‡ä»¶ï¼Œæ·»åŠ æˆåŠŸåŽéœ€ä¿å­˜)
+	Ìí¼ÓÖ°¹¤ÐÅÏ¢(Ìí¼ÓÇ°Ðè´ò¿ªÎÄ¼þ£¬Ìí¼Ó³É¹¦ºóÐè±£´æ)
 */
 Employee * add(Employee * Head)
 {
@@ -140,45 +141,45 @@ Employee * add(Employee * Head)
 	Head = openfile();
 	if(Head == NULL)
 	{
-		printf("æœªèƒ½æ‰“å¼€ä»»ä½•æ–‡ä»¶ï¼\n");
+		printf("Î´ÄÜ´ò¿ªÈÎºÎÎÄ¼þ£¡\n");
 		getchar();
 		return NULL;
 	}
 	h = c = f = Head;
-	p = (Employee * )malloc(sizeof(Employee));//åˆ†é…ç©ºé—´(æ–°æ·»èŠ‚ç‚¹ï¼Œå³æ–°æ·»åŠ çš„è®°å½•)
-	printf("è¯·æŒ‰æç¤ºæ·»åŠ èŒå·¥ä¿¡æ¯\n");
-	printf("èŒå·¥å·ï¼š");
+	p = (Employee * )malloc(sizeof(Employee));//·ÖÅä¿Õ¼ä(ÐÂÌí½Úµã£¬¼´ÐÂÌí¼ÓµÄ¼ÇÂ¼)
+	printf("Çë°´ÌáÊ¾Ìí¼ÓÖ°¹¤ÐÅÏ¢\n");
+	printf("Ö°¹¤ºÅ£º");
 	scanf("%s", p->num);
-	printf("å§“åï¼š");
+	printf("ÐÕÃû£º");
 	scanf("%s", p->name);
-	printf("æ€§åˆ«ï¼š");
+	printf("ÐÔ±ð£º");
 	scanf("%s", p->sex);
-	printf("å‡ºç”Ÿå¹´æœˆï¼š");
+	printf("³öÉúÄêÔÂ£º");
 	scanf("%s", p->birth);
-	printf("å­¦åŽ†ï¼š");
+	printf("Ñ§Àú£º");
 	scanf("%s", p->edu);
-	printf("èŒåŠ¡ï¼š");
+	printf("Ö°Îñ£º");
 	scanf("%s", p->post);
-	printf("å·¥èµ„ï¼š");
+	printf("¹¤×Ê£º");
 	scanf("%s", p->salary);
-	printf("ä½å€ï¼š");
+	printf("×¡Ö·£º");
 	scanf("%s", p->addr);
-	printf("ç”µè¯å·ç ï¼š");
+	printf("µç»°ºÅÂë£º");
 	scanf("%s", p->phone);
-	if(strcmp(f->num,p->num)>0)//å’Œè¡¨å¤´ä½œæ¯”è¾ƒ
+	if(strcmp(f->num,p->num)>0)//ºÍ±íÍ·×÷±È½Ï
 	{
 		p->next = f;
 		h = p;
 		save(h);
-		printf("æ·»åŠ æˆåŠŸï¼\n");
+		printf("Ìí¼Ó³É¹¦£¡\n");
 		return h;
 	}
-	if(f->next == NULL)//åªæœ‰ä¸€ä¸ªå¯ç”¨ç»“ç‚¹
+	if(f->next == NULL)//Ö»ÓÐÒ»¸ö¿ÉÓÃ½áµã
 	{
 		f->next = p;
 		p->next = NULL;
 		save(h);
-		printf("æ·»åŠ æˆåŠŸï¼\n");
+		printf("Ìí¼Ó³É¹¦£¡\n");
 		return h;
 	}
 	while(f->next != NULL)
@@ -189,7 +190,7 @@ Employee * add(Employee * Head)
 			c->next = p;
 			p->next = f;
 			save(h);
-			printf("æ·»åŠ æˆåŠŸï¼\n");
+			printf("Ìí¼Ó³É¹¦£¡\n");
 			return h;
 		}
 		else
@@ -200,12 +201,12 @@ Employee * add(Employee * Head)
 		f->next = p;
 		p->next = NULL;
 		save(h);
-		printf("æ·»åŠ æˆåŠŸï¼\n");
+		printf("Ìí¼Ó³É¹¦£¡\n");
 		return h;
 	}
 }
 /*
-	åˆ é™¤èŒå·¥ä¿¡æ¯(éœ€å…ˆæ‰“å¼€èŒå·¥è®°å½•,åˆ é™¤ä¿¡æ¯åŽéœ€ä¿å­˜!)
+	É¾³ýÖ°¹¤ÐÅÏ¢(ÐèÏÈ´ò¿ªÖ°¹¤¼ÇÂ¼,É¾³ýÐÅÏ¢ºóÐè±£´æ!)
 */
 Employee *  Delete(Employee * Head)
 {
@@ -214,18 +215,18 @@ Employee *  Delete(Employee * Head)
 	Head = openfile();
 	if(Head == NULL)
 	{
-		printf("æœªèƒ½æ‰“å¼€ä»»ä½•æ–‡ä»¶ï¼\n");
+		printf("Î´ÄÜ´ò¿ªÈÎºÎÎÄ¼þ£¡\n");
 		getchar();
 		return NULL;
 	}
 	p = c = Head;
-	printf("è¯·è¾“å…¥è¦åˆ é™¤æ•°æ®çš„èŒå·¥å·ï¼š");
+	printf("ÇëÊäÈëÒªÉ¾³ýÊý¾ÝµÄÖ°¹¤ºÅ£º");
 	scanf("%s", str_number);
 	if(strcmp(p->num, str_number) == 0)
 	{
-		Head = Head->next;//Head->nextå³ä¸ºå¤´æŒ‡é’ˆçš„ç›´æŽ¥åŽç»§åœ°å€çš„æŒ‡é’ˆ
+		Head = Head->next;//Head->next¼´ÎªÍ·Ö¸ÕëµÄÖ±½Óºó¼ÌµØÖ·µÄÖ¸Õë
 		save(Head);
-		printf("åˆ é™¤æˆåŠŸï¼\n");
+		printf("É¾³ý³É¹¦£¡\n");
 		return Head;
 	}
 	p = p->next;
@@ -234,71 +235,73 @@ Employee *  Delete(Employee * Head)
 		if(strcmp(p->num, str_number) == 0)
 		{
 			if(p->next != NULL)
-				c->next = p->next;//è®©å‰ä¸€ä¸ªç»“ç‚¹æŒ‡å‘pçš„åŽç»§ç»“ç‚¹
+				c->next = p->next;//ÈÃÇ°Ò»¸ö½áµãÖ¸ÏòpµÄºó¼Ì½áµã
 			if(p->next == NULL)
-				c->next = NULL;//è®©cæŒ‡å‘ç©ºï¼ˆå°¾ç»“ç‚¹ï¼‰
+				c->next = NULL;//ÈÃcÖ¸Ïò¿Õ£¨Î²½áµã£©
 			save(Head);
-			printf("åˆ é™¤æˆåŠŸï¼\n");
+			printf("É¾³ý³É¹¦£¡\n");
 			return Head;
 		}
 		p = p->next;
 		c = c->next;
 	}
 	
-	printf("æ²¡æœ‰æ‰¾åˆ°å¯ä»¥åˆ é™¤çš„æ•°æ®ï¼ï¼");
+	printf("Ã»ÓÐÕÒµ½¿ÉÒÔÉ¾³ýµÄÊý¾Ý£¡£¡");
 	return Head;
 }
 /*
-	æŸ¥è¯¢èŒå·¥ä¿¡æ¯ï¼Œå¯æŒ‰èŒå·¥å·å’Œå§“åæŸ¥è¯¢(éœ€å…ˆæ‰“å¼€èŒå·¥è®°å½•)
+	²éÑ¯Ö°¹¤ÐÅÏ¢£¬¿É°´Ö°¹¤ºÅºÍÐÕÃû²éÑ¯(ÐèÏÈ´ò¿ªÖ°¹¤¼ÇÂ¼)
 */
 void Search(Employee * Head)
 {
 	Employee * p;
 	char str[20];
-	int i, j = 0;//å®šä¹‰iå˜é‡æ¥ç¡®å®šæŸ¥è¯¢æ–¹å¼ï¼ˆ1.æŒ‰èŒå·¥å·/2.æŒ‰å§“åï¼‰,å®šä¹‰jå˜é‡æ¥åˆ¤æ–­æ‰€æŸ¥èŒå·¥æ˜¯å¦å­˜åœ¨
+	int i, j = 0;//¶¨Òåi±äÁ¿À´È·¶¨²éÑ¯·½Ê½£¨1.°´Ö°¹¤ºÅ/2.°´ÐÕÃû£©,¶¨Òåj±äÁ¿À´ÅÐ¶ÏËù²éÖ°¹¤ÊÇ·ñ´æÔÚ
 	Head = openfile();
 	p = Head;
 	if(Head == NULL)
 	{
-		printf("æœªèƒ½æ‰“å¼€ä»»ä½•æ–‡ä»¶ï¼\n");
+		printf("Î´ÄÜ´ò¿ªÈÎºÎÎÄ¼þ£¡\n");
 		getchar();
 		return ;
 	}
-	printf("1.æŒ‰èŒå·¥å·æŸ¥è¯¢    2.æŒ‰å§“åæŸ¥è¯¢\n");
+	printf("1.°´Ö°¹¤ºÅ²éÑ¯    2.°´ÐÕÃû²éÑ¯\n");
 	scanf("%d", &i);
 	if(i == 1)
-		printf("è¯·è¾“å…¥è¦æŸ¥è¯¢çš„èŒå·¥å·ï¼š");
+		printf("ÇëÊäÈëÒª²éÑ¯µÄÖ°¹¤ºÅ£º");
 	else
-		printf("è¯·è¾“å…¥å§“åï¼š");
+		printf("ÇëÊäÈëÐÕÃû£º");
 	scanf("%s", str);
 	while(p != NULL)
 	{
-		if(i == 1)//æŒ‰èŒå·¥å·æŸ¥è¯¢
+		if(i == 1)//°´Ö°¹¤ºÅ²éÑ¯
 		{
 			if(strcmp(p->num,str) == 0)
 			{
-				printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
+				printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", 
+					p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
 				j = 1;
 				break;
 			}
 		}
-		if(i == 2)//æŒ‰å§“åæŸ¥è¯¢
+		if(i == 2)//°´ÐÕÃû²éÑ¯
 		{
 			if(strcmp(p->name, str) == 0)
 			{
-				printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
+				printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", 
+					p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
 				j = 1;
 			}
 		}
 		p = p->next;
 	}
-	getchar();//æ˜¾ç¤ºç»“æžœï¼Œå¦åˆ™ä¸€é—ªè€Œè¿‡
+	getchar();//ÏÔÊ¾½á¹û£¬·ñÔòÒ»ÉÁ¶ø¹ý
 	if(j == 0)
-		printf("æŸ¥æ— æ­¤äººï¼ï¼");
+		printf("²éÎÞ´ËÈË£¡£¡");
 	return;
 }
 /*
-	ä¿®æ”¹èŒå·¥ä¿¡æ¯(éœ€å…ˆæ‰“å¼€èŒå·¥è®°å½•,ä¿®æ”¹åŽä¿¡æ¯åŽéœ€ä¿å­˜!)
+	ÐÞ¸ÄÖ°¹¤ÐÅÏ¢(ÐèÏÈ´ò¿ªÖ°¹¤¼ÇÂ¼,ÐÞ¸ÄºóÐÅÏ¢ºóÐè±£´æ!)
 */
 Employee * Update(Employee * Head)
 {
@@ -307,49 +310,49 @@ Employee * Update(Employee * Head)
 	Head = openfile();
 	if(Head == NULL)
 	{
-		printf("æœªèƒ½æ‰“å¼€ä»»ä½•æ–‡ä»¶ï¼\n");
+		printf("Î´ÄÜ´ò¿ªÈÎºÎÎÄ¼þ£¡\n");
 		getchar();
 		return NULL;
 	}
 	p = Head;
-	printf("è¯·è¾“å…¥è¦ä¿®æ”¹çš„èŒå·¥å·ï¼š");
+	printf("ÇëÊäÈëÒªÐÞ¸ÄµÄÖ°¹¤ºÅ£º");
 	scanf("%s",str_number);
 	while(p != NULL)
 	{
-		if(strcmp(p->num, str_number) == 0)//ä¸Žè¾“å…¥çš„èŒå·¥å·è¿›è¡Œæ¯”è¾ƒï¼Œè‹¥ç›¸åŒåˆ™è¿›è¡Œä¿®æ”¹
+		if(strcmp(p->num, str_number) == 0)//ÓëÊäÈëµÄÖ°¹¤ºÅ½øÐÐ±È½Ï£¬ÈôÏàÍ¬Ôò½øÐÐÐÞ¸Ä
 		{
-			printf("èŒå·¥å·:%s\nå§“å:%s\næ€§åˆ«:%s\nå‡ºç”Ÿå¹´æœˆ:%s\nå­¦åŽ†:%s\nèŒåŠ¡:%s\nå·¥èµ„:%s\nä½å€:%s\nç”µè¯å·ç :%s\n",
+			printf("Ö°¹¤ºÅ:%s\nÐÕÃû:%s\nÐÔ±ð:%s\n³öÉúÄêÔÂ:%s\nÑ§Àú:%s\nÖ°Îñ:%s\n¹¤×Ê:%s\n×¡Ö·:%s\nµç»°ºÅÂë:%s\n",
 				p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
-			printf("è¯·æŒ‰æç¤ºè¾“å…¥ä¿®æ”¹åŽçš„å†…å®¹:\n");
-			printf("èŒå·¥å·ï¼š");
+			printf("Çë°´ÌáÊ¾ÊäÈëÐÞ¸ÄºóµÄÄÚÈÝ:\n");
+			printf("Ö°¹¤ºÅ£º");
 			scanf("%s", p->num);
-			printf("å§“åï¼š");
+			printf("ÐÕÃû£º");
 			scanf("%s", p->name);
-			printf("æ€§åˆ«ï¼š");
+			printf("ÐÔ±ð£º");
 			scanf("%s", p->sex);
-			printf("å‡ºç”Ÿå¹´æœˆï¼š");
+			printf("³öÉúÄêÔÂ£º");
 			scanf("%s", p->birth);
-			printf("å­¦åŽ†ï¼š");
+			printf("Ñ§Àú£º");
 			scanf("%s", p->edu);
-			printf("èŒåŠ¡ï¼š");
+			printf("Ö°Îñ£º");
 			scanf("%s", p->post);
-			printf("å·¥èµ„ï¼š");
+			printf("¹¤×Ê£º");
 			scanf("%s", p->salary);
-			printf("ä½å€ï¼š");
+			printf("×¡Ö·£º");
 			scanf("%s", p->addr);
-			printf("ç”µè¯å·ç ï¼š");
+			printf("µç»°ºÅÂë£º");
 			scanf("%s", p->phone);
 			save(Head);
-			printf("ä¿®æ”¹æˆåŠŸï¼\n");
+			printf("ÐÞ¸Ä³É¹¦£¡\n");
 			return Head;
 		}
 		p = p->next;
 	}
-	printf("æ²¡æœ‰æ‰¾åˆ°è¦ä¿®æ”¹çš„è®°å½•ï¼ï¼");
+	printf("Ã»ÓÐÕÒµ½ÒªÐÞ¸ÄµÄ¼ÇÂ¼£¡£¡");
 	return Head;
 }
 /*
-	ä¿å­˜é“¾è¡¨ä¸ºç£ç›˜æ–‡ä»¶(ç”¨æ ¼å¼åŒ–çš„æ–¹å¼å†™æ–‡ä»¶)
+	±£´æÁ´±íÎª´ÅÅÌÎÄ¼þ(ÓÃ¸ñÊ½»¯µÄ·½Ê½Ð´ÎÄ¼þ)
 */
 void save(Employee * Head)
 {  
@@ -358,7 +361,7 @@ void save(Employee * Head)
 	system("cls");
 	if((fp = fopen("EmployeeInfo.txt","w")) == NULL)
 	{
-		printf("åˆ›å»ºæ–‡ä»¶å¤±è´¥ï¼\n");
+		printf("´´½¨ÎÄ¼þÊ§°Ü£¡\n");
 		return;
 	}
 	p = Head;
@@ -379,7 +382,7 @@ void save(Employee * Head)
     fclose(fp);  
 }  
 /*
-	æ–°åˆ›å»ºé“¾è¡¨è¯»å–ç£ç›˜æ–‡ä»¶(ç”¨æ ¼å¼åŒ–çš„æ–¹å¼è¯»æ–‡ä»¶)
+	ÐÂ´´½¨Á´±í¶ÁÈ¡´ÅÅÌÎÄ¼þ(ÓÃ¸ñÊ½»¯µÄ·½Ê½¶ÁÎÄ¼þ)
 */
 Employee * openfile()
 {
@@ -387,16 +390,18 @@ Employee * openfile()
 	FILE * fp;
 	if((fp = fopen("EmployeeInfo.txt","r")) == NULL)
 	{
-		printf("æ‰“å¼€æ–‡ä»¶å¤±è´¥ï¼\n");
+		printf("´ò¿ªÎÄ¼þÊ§°Ü£¡\n");
 		return;
 	}
-	Head = f = p = (Employee * )malloc(sizeof(Employee));//å»ºç«‹ä¸€ä¸ªç»“ç‚¹
-	fscanf(fp, "%s%s%s%s%s%s%s%s%s", p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
+	Head = f = p = (Employee * )malloc(sizeof(Employee));//½¨Á¢Ò»¸ö½áµã
+	fscanf(fp, "%s%s%s%s%s%s%s%s%s", 
+		p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
 	while(!feof(fp))
 	{
 		p = (Employee * )malloc(sizeof(Employee));
-		f->next = p;//èŠ‚ç‚¹è¿žæŽ¥
-		fscanf(fp, "%s%s%s%s%s%s%s%s%s", p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
+		f->next = p;//½ÚµãÁ¬½Ó
+		fscanf(fp, "%s%s%s%s%s%s%s%s%s", 
+			p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
 		if(strcmp(p->num,"over")==0)
 		{
 			f->next = NULL;

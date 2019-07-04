@@ -32,7 +32,7 @@ Employee * openfile();				//新创建链表读取磁盘文件
 
 int  main()
 {
-	Employee * Head=NULL;			//链表初始化
+	Employee * Head = NULL;			//链表初始化
 	int select;
 	do
 	{
@@ -98,7 +98,7 @@ Employee * create()
 		printf("请输入电话号码：");
 		scanf("%s", p->phone);
 		getchar();
-		printf("是否继续录入？按Y/y继续 ");
+		printf("是否继续录入？按Y/y继续");
 		scanf("%c", &ch);
 		p = (Employee *)malloc(sizeof(Employee));
 		end->next = p;//将新生成的结点插在表尾
@@ -118,19 +118,18 @@ void Show(Employee * Head)
 	if(p == NULL)
 	{
 		printf("未打开任何文件！\n");
-		getchar();
 		return;
 	}
-	printf("\n职工号  姓名  性别  出生年月  学历  职务   工资	   住址	   电话号码\n");
-	printf("-----------------------------------------------------------------------\n");
+	printf("-------------------------------------------------------------------------------------------\n");
+	printf("职工号\t姓名\t性别\t出生年月\t学历\t职务\t工资\t住址\t\t电话号码\n"); 
+	printf("-------------------------------------------------------------------------------------------\n");
 	while(p != NULL)
 	{
-		printf("\n");
-		printf("%4s%8s%4s%10s%8s%8s%6s%10s%12s", 
+		printf("%s\t%s\t%s\t%s\t\t%s\t%s\t%s\t%s\t%s\n", 
 			p->num, p->name, p->sex, p->birth, p->edu, p->post, p->salary, p->addr, p->phone);
+		printf("-------------------------------------------------------------------------------------------\n");
 		p = p->next;
 	}
-	getchar();//显示结果，否则一闪而过
 }
 /*
 	添加职工信息(添加前需打开文件，添加成功后需保存)
@@ -194,7 +193,9 @@ Employee * add(Employee * Head)
 			return h;
 		}
 		else
+		{
 			c = c->next;
+		}
 	}
 	if(f->next == NULL)
 	{
@@ -245,7 +246,6 @@ Employee *  Delete(Employee * Head)
 		p = p->next;
 		c = c->next;
 	}
-	
 	printf("没有找到可以删除的数据！！");
 	return Head;
 }

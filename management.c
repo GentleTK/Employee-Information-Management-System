@@ -75,7 +75,7 @@ employee *createNode(void)
 	{
 		printf("Malloc error!\n");
 	}
-	memset(pNode, 0, sizeof(employee));
+	memset(pNode, 0, sizeof(employee *));
 	printf("Please input id: ");
 	scanf("%s", pNode->id);
 	printf("Please input name: ");
@@ -319,7 +319,7 @@ employee *openFile(void)
 	{
 		printf("Malloc error!\n");
 	}
-	memset(end, 0, sizeof(employee));
+	memset(end, 0, sizeof(employee *));
 	memset(pHead, 0, sizeof(employee));
 	fscanf(fp, "%s%s%s%s%s%s%s%s%s", end->id, end->name, end->sex, end->birth, end->edu, end->post, end->salary, end->addr, end->phone);
 	while(!feof(fp))
